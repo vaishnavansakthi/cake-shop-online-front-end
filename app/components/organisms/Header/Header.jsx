@@ -11,8 +11,22 @@ const Header = () => {
   };
 
   return (
-    <nav className="bg-white shadow-lg">
+    <nav className="bg-[#FEF6F8] shadow-lg">
       <div className="max-w-7xl mx-auto px-4">
+        <div className="flex justify-between items-center py-4">
+          <div>
+            For Orders Call : <span className="text-[#E60E35]">9047609410</span>
+          </div>
+          <div>
+            <a className="hover:underline" href="/signup">
+              Sign Up
+            </a>{" "}
+            |{" "}
+            <a className="hover:underline" href="/login">
+              Login
+            </a>
+          </div>
+        </div>
         <div className="flex justify-between items-center py-4">
           {/* Brand name or logo */}
           <div className="text-2xl font-bold text-gray-800">
@@ -27,10 +41,16 @@ const Header = () => {
               Home
             </a>
             <a href="/about" className="text-gray-800 hover:text-gray-500">
-              About
+              About Cake Shop
             </a>
             <a href="#" className="text-gray-800 hover:text-gray-500">
-              Services
+              Creative
+            </a>
+            <a href="#" className="text-gray-800 hover:text-gray-500">
+              Signature
+            </a>
+            <a href="#" className="text-gray-800 hover:text-gray-500">
+              Theme
             </a>
             <a href="#" className="text-gray-800 hover:text-gray-500">
               Contact
@@ -77,13 +97,25 @@ const Header = () => {
             href="#"
             className="block py-2 px-4 text-gray-800 hover:bg-gray-200"
           >
-            About
+            About Cake Shop
           </a>
           <a
             href="#"
             className="block py-2 px-4 text-gray-800 hover:bg-gray-200"
           >
-            Services
+            Creative
+          </a>
+          <a
+            href="#"
+            className="block py-2 px-4 text-gray-800 hover:bg-gray-200"
+          >
+            Signature
+          </a>
+          <a
+            href="#"
+            className="block py-2 px-4 text-gray-800 hover:bg-gray-200"
+          >
+            Theme
           </a>
           <a
             href="#"
