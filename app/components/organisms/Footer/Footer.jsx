@@ -56,7 +56,7 @@ const Footer = () => {
         </div>
 
         {/* Footer Bottom */}
-        <div className="border-t border-gray-600 mt-8 pt-4 text-center">
+        <div className="border-t border-pink-400 mt-8 pt-4 text-center">
           <p className="text-gray-100">
             &copy; 2024 Company. All rights reserved.
           </p>
