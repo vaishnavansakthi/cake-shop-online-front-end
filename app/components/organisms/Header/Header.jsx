@@ -1,5 +1,7 @@
 "use client";
+import Image from "next/image";
 import React, { useState } from "react";
+import SSLogo from "../../../assets/ssbakes.png";
 
 const Header = () => {
   // State to toggle the mobile menu
@@ -13,7 +15,7 @@ const Header = () => {
   return (
     <nav className="bg-[#FEF6F8] shadow-lg">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-2">
           <div>
             For Orders Call : <span className="text-[#E60E35]">9047609410</span>
           </div>
@@ -27,11 +29,17 @@ const Header = () => {
             </a>
           </div>
         </div>
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center">
           {/* Brand name or logo */}
-          <div className="text-2xl font-bold text-gray-800">
+          <div className="text-2xl font-bold text-gray-800 py-3">
             <a href="/" className="text-gray-800 hover:text-gray-500">
-              SS Bakes
+              <Image
+                src={SSLogo}
+                // width={"80px"} // Set a default width
+                // height={"80px"} // Set a default height
+                className="w-16 h-16 sm:w-18 sm:h-18 md:w-24 md:h-24 lg:w-28 lg:h-28"
+                alt="ss bakes"
+              />
             </a>
           </div>
 

@@ -1,5 +1,7 @@
 "use client";
+import Image from "next/image";
 import React from "react";
+import SSLogo from "../../../assets/ssbakes.png";
 
 const Footer = () => {
   return (
@@ -8,7 +10,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-xl font-semibold mb-4">SS Bakes</h3>
+            <div className="mb-5">
+              <Image
+                src={SSLogo}
+                // width={"80px"} // Set a default width
+                // height={"80px"} // Set a default height
+                className="w-16 h-16 sm:w-18 sm:h-18 md:w-24 md:h-24 lg:w-28 lg:h-28"
+                alt="ss bakes"
+              />
+            </div>
             <p className="text-gray-100 mb-4">
               We provide quality products and services to enhance your business
               growth.
@@ -30,12 +40,22 @@ const Footer = () => {
               </li>
               <li className="mb-2">
                 <a href="#" className="hover:text-white">
-                  About Us
+                  About Cake Shop
                 </a>
               </li>
               <li className="mb-2">
                 <a href="#" className="hover:text-white">
-                  Services
+                  Creative
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="#" className="hover:text-white">
+                  Signature
+                </a>
+              </li>
+              <li className="mb-2">
+                <a href="#" className="hover:text-white">
+                  Theme
                 </a>
               </li>
               <li className="mb-2">

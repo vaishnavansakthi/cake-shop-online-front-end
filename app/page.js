@@ -28,11 +28,19 @@ export const metadata = {
   canonical: "https://cake-shop-online.com",
   amp: true,
 };
+
+const items = [
+  { image: "https://via.placeholder.com/1200x400", alt: "Image 1" },
+  { image: "https://via.placeholder.com/600x400", alt: "Image 2" },
+  { image: "https://via.placeholder.com/600x400", alt: "Image 3" },
+  { image: "https://via.placeholder.com/600x400", alt: "Image 4" },
+  { image: "https://via.placeholder.com/600x400", alt: "Image 5" },
+];
 export default function Home() {
   return (
     <Layout>
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-center text-2xl">Cake shop online</p>
+        <p className="text-center text-2xl">Cake Shop Online</p>
       </div>
     </Layout>
   );

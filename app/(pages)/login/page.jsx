@@ -81,8 +81,8 @@ const Login = () => {
           {/* Forgot Password Link */}
           <div className="flex justify-end">
             <a
-              href="#"
-              className="text-sm text-pink-500 hover:text-pink-600 focus:outline-none"
+              href="/forgot-password"
+              className="text-sm text-pink-500 hover:text-pink-600 focus:outline-none hover:underline"
             >
               Forgot Password?
             </a>
@@ -106,7 +106,7 @@ const Login = () => {
             Don't have an account?{" "}
             <a
               href="/signup"
-              className="text-pink-500 hover:text-pink-600 focus:outline-none"
+              className="text-pink-500 hover:text-pink-600 focus:outline-none hover:underline"
             >
               Sign Up
             </a>

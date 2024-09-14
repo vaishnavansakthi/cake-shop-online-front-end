@@ -153,7 +153,7 @@ const SignUp = () => {
             Already have an account?{" "}
             <a
               href="/login"
-              className="text-pink-500 hover:text-pink-600 focus:outline-none"
+              className="text-pink-500 hover:text-pink-600 focus:outline-none hover:underline"
             >
               Login
             </a>
