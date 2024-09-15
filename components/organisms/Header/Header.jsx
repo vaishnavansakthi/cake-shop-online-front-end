@@ -1,15 +1,36 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import SSLogo from "../../../assets/ssbakes.png";
 
 const Header = () => {
-  // State to toggle the mobile menu
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [customerName, setCustomerName] = useState(null);
+  const router = useRouter();
 
-  // Function to toggle the menu
+  // Function to toggle the mobile menu
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  // Check if the user is logged in (you could use JWT or any other method)
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    console.log(token);
+    if (token) {
+      // Decode token or fetch user information if needed
+      const decodedToken = JSON.parse(atob(token.split(".")[1]));
+      console.log(decodedToken); // Assuming JWT token
+      setCustomerName(decodedToken?.username); // Assuming the email or name is in the token payload
+    }
+  }, []);
+
+  // Handle logout
+  const handleLogout = () => {
+    localStorage.removeItem("access_token"); // Remove the token
+    setCustomerName(null);
+    router.push("/login"); // Redirect to login page
   };
 
   return (
@@ -20,13 +41,29 @@ const Header = () => {
             For Orders Call : <span className="text-[#E60E35]">9047609410</span>
           </div>
           <div>
-            <a className="hover:underline" href="/signup">
-              Sign Up
-            </a>{" "}
-            |{" "}
-            <a className="hover:underline" href="/login">
-              Login
-            </a>
+            {customerName ? (
+              <>
+                {/* Show greeting and logout button if user is logged in */}
+                <span className="mr-4">Hello, {customerName}!</span>
+                <button
+                  onClick={handleLogout}
+                  className="text-red-600 hover:underline"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                {/* Show Sign Up and Login links if user is not logged in */}
+                <a className="hover:underline" href="/signup">
+                  Sign Up
+                </a>{" "}
+                |{" "}
+                <a className="hover:underline" href="/login">
+                  Login
+                </a>
+              </>
+            )}
           </div>
         </div>
         <div className="flex justify-between items-center">
@@ -35,8 +72,6 @@ const Header = () => {
             <a href="/" className="text-gray-800 hover:text-gray-500">
               <Image
                 src={SSLogo}
-                // width={"80px"} // Set a default width
-                // height={"80px"} // Set a default height
                 className="w-16 h-16 sm:w-18 sm:h-18 md:w-24 md:h-24 lg:w-28 lg:h-28"
                 alt="ss bakes"
               />
@@ -96,13 +131,13 @@ const Header = () => {
           }`}
         >
           <a
-            href="#"
+            href="/"
             className="block py-2 px-4 text-gray-800 hover:bg-gray-200"
           >
             Home
           </a>
           <a
-            href="#"
+            href="/about"
             className="block py-2 px-4 text-gray-800 hover:bg-gray-200"
           >
             About Cake Shop

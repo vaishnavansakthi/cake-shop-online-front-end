@@ -2,8 +2,12 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { signup } from "@/services/auth";
+import { useRouter } from "next/navigation";
 
 const SignUp = () => {
+  const router = useRouter();
+
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -25,13 +29,30 @@ const SignUp = () => {
         .matches(/^[0-9]{10}$/, "Mobile number must be exactly 10 digits")
         .required("Mobile number is required"),
     }),
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      // alert(JSON.stringify(values, null, 2));
+      try {
+        const data = {
+          username: values?.username,
+          email: values?.email,
+          password: values?.password,
+          mobileNumber: values?.mobileNumber,
+        };
+        ("use server");
+        const result = await signup(data);
+        if (result) {
+          formik.resetForm();
+          formik.setErrors({});
+          router.push("/login");
+        }
+      } catch (error) {
+        console.error("Error signing up:", error);
+      }
     },
   });
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center">
+    <div className="min-h-screen flex flex-col justify-center items-center max-sm:mt-[-60px]">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-semibold text-center text-gray-700">
           Sign Up

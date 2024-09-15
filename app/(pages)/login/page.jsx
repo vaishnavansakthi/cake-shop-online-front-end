@@ -2,8 +2,13 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { login } from "@/services/auth";
+import { useRouter } from "next/navigation";
+import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
+  const router = useRouter();
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -17,13 +22,38 @@ const Login = () => {
         .min(6, "Password must be at least 6 characters")
         .required("Password is required"),
     }),
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      try {
+        const data = {
+          email: values?.email,
+          password: values?.password,
+        };
+        const result = await login(data);
+        // console.log(result);
+        localStorage.setItem("access_token", result.access_token);
+        if (result?.access_token) {
+          formik.resetForm();
+          formik.setErrors({});
+          const decodedToken = jwtDecode(result.access_token); // Decode the token
+          const userRole = decodedToken?.role; // Extract role from the decoded token
+
+          // Navigate based on role
+          if (userRole === "admin") {
+            router.push("/admin");
+          } else if (userRole === "customer") {
+            router.push("/");
+          } else {
+            router.push("/");
+          }
+        }
+      } catch (error) {
+        console.error(error);
+      }
     },
   });
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center">
+    <div className="min-h-screen flex flex-col justify-center items-center max-sm:mt-[-60px]">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-semibold text-center text-gray-700">
           Log In
@@ -39,7 +69,7 @@ const Login = () => {
               id="email"
               name="email"
               type="email"
-              className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm ${
+              className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm outline-none ${
                 formik.touched.email && formik.errors.email
                   ? "border-red-500"
                   : "border-gray-300"
@@ -62,7 +92,7 @@ const Login = () => {
               id="password"
               name="password"
               type="password"
-              className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm ${
+              className={`mt-1 block w-full px-3 py-2 border rounded-md shadow-sm outline-none ${
                 formik.touched.password && formik.errors.password
                   ? "border-red-500"
                   : "border-gray-300"
