@@ -1,10 +1,10 @@
 import React, { Suspense } from "react";
 
 const Header = React.lazy(() =>
-  import("../components/organisms/Header/Header")
+  import("../../components/organisms/Header/Header")
 );
 const Footer = React.lazy(() =>
-  import("../components/organisms/Footer/Footer")
+  import("../../components/organisms/Footer/Footer")
 );
 
 export default function Layout({ children }) {

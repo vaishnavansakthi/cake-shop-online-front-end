@@ -1,5 +1,4 @@
 import "./globals.css";
-import SSlogo from "./assets/ssbakes.png";
 
 export const metadata = {
   title: "SS Bakes",

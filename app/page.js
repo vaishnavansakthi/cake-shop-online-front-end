@@ -1,4 +1,5 @@
 import Layout from "./(pages)/layout";
+import Carousel from "../components/molecules/Carousel/Carousel";
 
 export const metadata = {
   title: "Cake Shop Online",
@@ -39,8 +40,8 @@ const items = [
 export default function Home() {
   return (
     <Layout>
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-center text-2xl">Cake Shop Online</p>
+      <div className="min-h-screen">
+        <Carousel />
       </div>
     </Layout>
   );
