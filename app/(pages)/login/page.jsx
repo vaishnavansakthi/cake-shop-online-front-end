@@ -1,13 +1,15 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { login } from "@/services/auth";
 import { useRouter } from "next/navigation";
 import { jwtDecode } from "jwt-decode";
+import PulseLoader from "react-spinners/PulseLoader";
 
 const Login = () => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -23,6 +25,7 @@ const Login = () => {
         .required("Password is required"),
     }),
     onSubmit: async (values) => {
+      setLoading(true);
       try {
         const data = {
           email: values?.email,
@@ -48,6 +51,8 @@ const Login = () => {
         }
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     },
   });
@@ -123,8 +128,17 @@ const Login = () => {
             <button
               type="submit"
               className="w-full bg-pink-500 text-white py-2 px-4 rounded-md hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
+              disabled={loading}
             >
-              Log In
+              {loading ? (
+                <PulseLoader
+                  color="#ed93cb"
+                  aria-label="Loading Spinner"
+                  size={10}
+                />
+              ) : (
+                "Login"
+              )}
             </button>
           </div>
         </form>

@@ -1,11 +1,14 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { signup } from "@/services/auth";
 import { useRouter } from "next/navigation";
+import PulseLoader from "react-spinners/PulseLoader";
 
 const SignUp = () => {
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
 
   const formik = useFormik({
@@ -31,6 +34,7 @@ const SignUp = () => {
     }),
     onSubmit: async (values) => {
       // alert(JSON.stringify(values, null, 2));
+      setLoading(true);
       try {
         const data = {
           username: values?.username,
@@ -47,6 +51,8 @@ const SignUp = () => {
         }
       } catch (error) {
         console.error("Error signing up:", error);
+      } finally {
+        setLoading(false);
       }
     },
   });
@@ -162,8 +168,17 @@ const SignUp = () => {
             <button
               type="submit"
               className="w-full bg-pink-500 text-white py-2 px-4 rounded-md hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
+              disabled={loading}
             >
-              Sign Up
+              {loading ? (
+                <PulseLoader
+                  color="#ed93cb"
+                  aria-label="Loading Spinner"
+                  size={10}
+                />
+              ) : (
+                "Sign Up"
+              )}
             </button>
           </div>
         </form>
