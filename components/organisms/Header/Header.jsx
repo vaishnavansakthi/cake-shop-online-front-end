@@ -36,22 +36,24 @@ const Header = () => {
   return (
     <nav className="bg-[#FEF6F8] shadow-lg">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex justify-between items-center py-2">
+        <div className="flex justify-between items-center py-2 max-sm:text-sm">
           <div>
             For Orders Call : <span className="text-[#E60E35]">9047609410</span>
           </div>
           <div>
             {customerName ? (
-              <>
+              <div className="flex justify-end items-center w-full">
                 {/* Show greeting and logout button if user is logged in */}
-                <span className="mr-4">Hello, {customerName}!</span>
+                <span className="text-sm sm:text-base">
+                  Hello, {customerName}!
+                </span>
                 <button
                   onClick={handleLogout}
-                  className="text-red-600 hover:underline"
+                  className="text-red-600 hover:underline ml-3 text-sm sm:text-base"
                 >
                   Logout
                 </button>
-              </>
+              </div>
             ) : (
               <>
                 {/* Show Sign Up and Login links if user is not logged in */}
