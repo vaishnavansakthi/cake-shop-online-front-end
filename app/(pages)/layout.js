@@ -24,7 +24,7 @@ export default function Layout({ children }) {
   return (
     <Suspense fallback={showLoader ? <Loader /> : null}>
       <Header />
-      {children}
+      <div className="">{children}</div>
       <Footer />
     </Suspense>
   );
